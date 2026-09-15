@@ -1,25 +1,3 @@
-import sys
-import random
-
-def generate_initial_solution(table: dict, capacity: int, num_items: int):
-    items = []
-    for i in range(num_items):
-        ratio = table[i][0] / table[i][1]
-        items.append((ratio, i))
-
-    items.sort(reverse=True)
-    solution = 0
-    current_weight = 0
-
-    for ratio, i in items:
-        _, weight = table[i]
-
-        if current_weight + weight <= capacity:
-            solution = solution | (1 << i)
-            current_weight += weight
-
-    return solution
-
 def evaluate(solution: int, num_items: int, table: dict, capacity: int):
     value = 0
     weight = 0
